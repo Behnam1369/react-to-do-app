@@ -74,17 +74,18 @@ class TodoContainer extends React.Component {
   // }
 
   setUpdate = (updatedTitle, id) => {
-    this.setState({
-      // eslint-disable-next-line react/destructuring-assignment
-      todos: this.state.todos.map((todo) => {
+    this.setState((prevState) => ({
+      todos: prevState.todos.map((todo) => {
         if (todo.id === id) {
-          // eslint-disable-next-line no-param-reassign
-          todo.title = updatedTitle;
+          return {
+            ...todo,
+            title: updatedTitle,
+          };
         }
         return todo;
       }),
-    });
-  }
+    }));
+  };
 
   render() {
     const { todos } = this.state;
